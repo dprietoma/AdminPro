@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="mb-3">{{ titulo }}</h5>
+    <div class="chart-box">
+      <canvas
+        baseChart
+        [type]="tipo"
+        [data]="data"
+        [options]="options">
+      </canvas>
+    </div>
+  </div>
+</div>

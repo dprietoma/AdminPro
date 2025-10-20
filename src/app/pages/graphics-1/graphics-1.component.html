@@ -1,1 +1,57 @@
-<p>graphics-1 works!</p>
+<div class="row">
+   <!-- 1) Doughnut -->
+  <div class="col-6">
+    <app-grafi-dona
+      [titulo]="tituloDona"
+      [tipo]="tipoDona"
+      [etiquetas]="etiquetasDona"
+      [datos]="datosDona"
+      [backgroundColor]="coloresDona"
+      [hoverBackgroundColor]="coloresHoverDona"
+      [borderColor]="'#ffffff'"
+      [borderWidth]="2">
+    </app-grafi-dona>
+  </div>
+
+    <!-- 2) Pie -->
+  <div class="col-6">
+    <app-grafi-dona
+      [titulo]="tituloPie"
+      [tipo]="tipoPie"
+      [etiquetas]="etiquetasPie"
+      [datos]="datosPie"
+      [backgroundColor]="coloresPie"
+      [hoverBackgroundColor]="coloresHoverPie">
+    </app-grafi-dona>
+  </div>
+</div>
+
+<div class="row">
+  <!-- 3) Barras -->
+  <div class="col-6">
+    <app-grafi-dona
+      [titulo]="'Visitas mensuales (Barras)'"
+      [tipo]="tipoBar"
+      [etiquetas]="etiquetasBar"
+      [datos]="datosBar"
+      [backgroundColor]="coloresBar"
+      [hoverBackgroundColor]="coloresHoverBar"
+      [borderColor]="'#1d4ed8'"
+      [borderWidth]="1">
+    </app-grafi-dona>
+  </div>
+
+  <!-- 4) Línea -->
+  <div class="col-6">
+    <app-grafi-dona
+      [titulo]="'Ingresos (Línea)'"
+      [tipo]="tipoLine"
+      [etiquetas]="etiquetasLine"
+      [datos]="datosLine"
+      [backgroundColor]="coloresLine"
+      [hoverBackgroundColor]="coloresHoverLine"
+      [borderColor]="'#16a34a'"
+      [borderWidth]="2">
+    </app-grafi-dona>
+  </div>
+</div>

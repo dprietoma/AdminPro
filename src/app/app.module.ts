@@ -7,11 +7,14 @@ import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './app.component';
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    NopagefoundComponent
+    NopagefoundComponent,
   ],
   imports: [
     BrowserModule,
