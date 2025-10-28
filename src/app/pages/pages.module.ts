@@ -11,6 +11,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graphics1Component } from './graphics-1/graphics-1.component';
 import { MainComponent } from './main/main.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PagesRoutingModule } from './pages-routing.module';
 
 
 
@@ -19,21 +21,23 @@ import { MainComponent } from './main/main.component';
     DashboardComponent,
     ProgressComponent,
     Graphics1Component,
-    MainComponent
+    MainComponent,
+    AccountSettingsComponent
   ],
   exports: [
     DashboardComponent,
     ProgressComponent,
     Graphics1Component,
-    MainComponent
+    MainComponent,
+    AccountSettingsComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    AppRoutingModule,
     FormsModule,
     ComponentsModule,
-    NgChartsModule
+    NgChartsModule,
+    PagesRoutingModule
   ]
 })
 export class PagesModule { }

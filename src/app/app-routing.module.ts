@@ -13,6 +13,7 @@ const routes: Routes = [
 
   // path: PagesRoutingModule  dashboard, progress, graficas1
   // path: AuthRoutingModule   login, register
+
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: NopagefoundComponent },
 

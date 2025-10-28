@@ -7,14 +7,14 @@ import { RouterModule, Routes } from '@angular/router';
 // Components
 import { ResgisterComponent } from './resgister/resgister.component';
 import { LoginComponent } from './login/login.component';
-import { MainComponent } from './main/main.component';
+import { AuthMainComponent } from './main/auth-main.component';
 import { NopagefoundComponent } from '../nopagefound/nopagefound.component';
 
 
 const routes: Routes = [
    {
       path: 'auth',
-      component: MainComponent,
+      component: AuthMainComponent,
       children: [
         { path: '', component: NopagefoundComponent },
         { path: 'register', component: ResgisterComponent },

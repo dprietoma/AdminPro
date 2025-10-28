@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainComponent } from './main/main.component';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Graphics1Component } from './graphics-1/graphics-1.component';
 import { ProgressComponent } from './progress/progress.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
   {
@@ -12,7 +14,8 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'graphi1', component: Graphics1Component },
-      { path: 'progress', component: ProgressComponent }
+      { path: 'progress', component: ProgressComponent },
+      { path: 'account', component: AccountSettingsComponent }
     ]
   },
 

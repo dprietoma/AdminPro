@@ -2,8 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { ResgisterComponent } from './resgister/resgister.component';
-import { MainComponent } from './main/main.component';
-import { AppRoutingModule } from '../app-routing.module';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+
+import { AuthMainComponent } from './main/auth-main.component';
+import { AuthRoutingModule } from './auth-routing.module';
 
 
 
@@ -11,7 +15,7 @@ import { AppRoutingModule } from '../app-routing.module';
   declarations: [
     LoginComponent,
     ResgisterComponent,
-    MainComponent,
+    AuthMainComponent,
   ],
   exports: [
     LoginComponent,
@@ -19,7 +23,9 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AuthRoutingModule,
+    RouterModule,
+    FormsModule
   ]
 })
 export class AuthModule { }
