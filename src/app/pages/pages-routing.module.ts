@@ -8,11 +8,13 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { MainComponent } from './main/main.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { authGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'dashboard',
     component: MainComponent,
+    canActivate: [authGuard],
     children: [
       { path: '', component: DashboardComponent, data: { title: 'Dashboard' } },
       { path: 'graphics1', component: Graphics1Component, data: { title: 'Graphics 1' } },

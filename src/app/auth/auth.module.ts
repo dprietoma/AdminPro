@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { ResgisterComponent } from './resgister/resgister.component';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { AuthMainComponent } from './main/auth-main.component';
 import { AuthRoutingModule } from './auth-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -25,7 +26,9 @@ import { AuthRoutingModule } from './auth-routing.module';
     CommonModule,
     AuthRoutingModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class AuthModule { }
