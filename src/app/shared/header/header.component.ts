@@ -11,6 +11,8 @@ export class HeaderComponent {
 
   private usuariosService = inject(UsuariosService);
 
+  public usuario = this.usuariosService.usuario;
+
   logout() {
     this.usuariosService.logout();
   }

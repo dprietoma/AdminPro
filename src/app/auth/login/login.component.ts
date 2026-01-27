@@ -92,7 +92,7 @@ export class LoginComponent implements AfterViewInit {
           localStorage.removeItem('email');
         }
         this.ngzone.run(() => {
-          this.router.navigateByUrl('/auth/login');
+          this.router.navigateByUrl('/');
         });
       },
       (err) => {

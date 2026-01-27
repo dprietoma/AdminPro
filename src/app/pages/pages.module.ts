@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { ComponentsModule } from '../components/components.module';
-import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from '../app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { NgChartsModule } from 'ng2-charts';
 
@@ -16,6 +16,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { PromesasComponent } from './promesas/promesas.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 
@@ -27,7 +28,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     MainComponent,
     AccountSettingsComponent,
     PromesasComponent,
-    RxjsComponent
+    RxjsComponent,
+    PerfilComponent
   ],
   exports: [
     DashboardComponent,
@@ -40,6 +42,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     CommonModule,
     SharedModule,
     FormsModule,
+    ReactiveFormsModule,
     ComponentsModule,
     NgChartsModule,
     PagesRoutingModule,

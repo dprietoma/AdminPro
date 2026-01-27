@@ -7,6 +7,7 @@ import { tap } from 'rxjs/operators';
 import { RegisterForm } from '../interfaces/register-form.interface';
 import { LoginForm } from '../interfaces/login-form.interface';
 import { Router } from '@angular/router';
+import { Usuario } from '../models/usuario.models';
 
  
 declare const google: any; 
@@ -22,16 +23,26 @@ export class UsuariosService {
   private ngzone = inject(NgZone);
 
 
+  usuario!: Usuario;
+
+
+  get token(): string {
+    return sessionStorage.getItem('token') || '';
+  }
+
+
   validarToken(): Observable<boolean> {
-    const token = sessionStorage.getItem('token') || '';
     return this.http.get(`${this.baseUrl}/auth/renew`, {
       headers: {
         'x-api-key': this.apiKey,
-        'x-token': token,
+        'x-token': this.token,
       },
     }).pipe(
       map((resp: any) => {
+        const {nombre,email,img = '',google,role,uid} = resp.usuario;
+        this.usuario = new Usuario(nombre,email,'',img,google,role,uid);
         sessionStorage.setItem('token', resp.token);
+        console.log('Usuario:', this.usuario);
         return true;
       }),
       catchError((err) => of(false))
@@ -63,6 +74,19 @@ export class UsuariosService {
       })
     );
   }
+
+  actualizarUsuario(data: { nombre: string; email: string; }) {
+    return this.http.put(
+      `${this.baseUrl}/usuarios/${this.usuario.uid}`,
+      data,
+      {
+        headers: {
+          'x-api-key': this.apiKey,
+          'x-token': this.token,
+        },
+      }
+    );
+  } 
 
   LoginUsuario(formData: LoginForm) {
     return this.http.post(`${this.baseUrl}/auth/login`, formData).pipe(
