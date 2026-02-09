@@ -37,10 +37,9 @@ export class PerfilComponent implements OnInit {
   }
 
   actualizarPerfil() {
-    console.log(this.perfilForm.value);
     this.usuariosService
       .actualizarUsuario(this.perfilForm.value)
-      .subscribe((resp) => {
+      .subscribe((resp: any) => {
         this.usuario.nombre = this.perfilForm.value.nombre;
         this.usuario.email = this.perfilForm.value.email;
         Swal.fire('Guardado', 'Perfil actualizado con exito', 'success');

@@ -11,6 +11,9 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { authGuard } from '../guards/auth.guard';
 import { PerfilComponent } from './perfil/perfil.component';
 
+// Mantenimientos
+import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -23,7 +26,10 @@ const routes: Routes = [
       { path: 'account', component: AccountSettingsComponent, data: { title: 'Account Settings' } },
       { path: 'promises', component: PromesasComponent, data: { title: 'Promises' } },
       { path: 'rxjs', component: RxjsComponent, data: { title: 'RxJS' } },
-      { path: 'perfil', component: PerfilComponent, data: { title: 'Perfil de usuario' } }
+      { path: 'perfil', component: PerfilComponent, data: { title: 'Perfil de usuario' } },
+
+      // Mantenimientos
+      { path: 'usuarios', component: UsuariosComponent, data: { title: 'Usuarios de la aplicación' } },
     ]
   },
 

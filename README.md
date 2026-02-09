@@ -1,4 +1,4 @@
-# Admmin pro Front-end
+# Admin pro Front-end
 
 Estes proyecto esta generado con [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
 
