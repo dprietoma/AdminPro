@@ -30,7 +30,6 @@ export class FileUploadService {
       .then(async resp => {
         if (resp.ok) {
           const data = await resp.json();
-          console.log(data);
           resolve(data.nombreArchivo);
         } else {
           reject('No se pudo subir la imagen');

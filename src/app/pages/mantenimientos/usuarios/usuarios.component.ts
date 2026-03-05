@@ -17,6 +17,8 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   private busquedasService = inject(BusquedasService);
   public modalImagenService = inject(ModalImagenService);
 
+
+  // Variables
   public usuarios: Usuario[] = [];
   public totalUsuarios: number = 0;
   public desde: number = 0;

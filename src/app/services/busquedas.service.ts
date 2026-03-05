@@ -31,6 +31,26 @@ export class BusquedasService {
         ),
     );
   }
+ 
+  private transformarHospitales(resultados: any[]): any[] {
+    return resultados.map(
+      (hospital) => ({
+        nombre: hospital.nombre,
+        img: hospital.img,
+        _id: hospital._id,
+      }),
+    );
+  }
+
+  private transformarMedicos(resultados: any[]): any[] {
+    return resultados.map(
+      (medico) => ({
+        nombre: medico.nombre,
+        img: medico.img,  
+        _id: medico._id
+      }),
+    );
+  }
 
   busqueda(tipo: 'usuarios' | 'medicos' | 'hospitales', termino: string) {
     const url = `${this.baseUrl}/todos/coleccion/${tipo}/${termino}`;
@@ -46,11 +66,11 @@ export class BusquedasService {
 
           case 'medicos':
             // return this.transformarMedicos(resp.resultados);
-            return []; // placeholder
+            return this.transformarMedicos(resp.resultados);
 
           case 'hospitales':
             // return this.transformarHospitales(resp.resultados);
-            return []; // placeholder
+            return this.transformarHospitales(resp.resultados);
 
           default:
             return []; // por si acaso (aunque con el union type, nunca debería caer aquí)

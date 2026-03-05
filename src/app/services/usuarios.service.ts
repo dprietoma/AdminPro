@@ -58,13 +58,8 @@ export class UsuariosService {
   }
 
   getUsuarios(): Observable<any[]> {
-    const headers = new HttpHeaders({
-      'x-api-key': this.apiKey, // 👈 nombre correcto del header
-      Accept: 'application/json',
-    });
-
     return this.http
-      .get<{ data: any[] }>(`${this.baseUrl}/usuarios`, { headers })
+      .get<{ data: any[] }>(`${this.baseUrl}/usuarios`, this.headers )
       .pipe(
         map((res) => (Array.isArray(res?.data) ? res.data : [])),
         catchError((err) => {
