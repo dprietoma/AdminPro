@@ -17,6 +17,14 @@ export class BusquedasService {
     return sessionStorage.getItem('token') || '';
   }
 
+  get headers() {
+    return {
+      headers: {
+        'x-token': this.token,
+      },
+    };
+  }
+
   private transformarUsuarios(resultados: any[]): Usuario[] {
     return resultados.map(
       (user) =>
@@ -50,6 +58,11 @@ export class BusquedasService {
         _id: medico._id
       }),
     );
+  }
+
+  busquedaGlobal(termino:string) {
+    const url = `${this.baseUrl}/todos/${termino}`;
+    return this.http.get( url, this.headers);
   }
 
   busqueda(tipo: 'usuarios' | 'medicos' | 'hospitales', termino: string) {

@@ -33,6 +33,7 @@ export class PerfilComponent implements OnInit {
         [Validators.required, Validators.minLength(2)],
       ],
       email: [this.usuario.email, [Validators.required, Validators.email]],
+      role: this.usuario.role
     });
   }
 

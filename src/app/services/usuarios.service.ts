@@ -9,6 +9,7 @@ import { LoginForm } from '../interfaces/login-form.interface';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.models';
 import { CargarUsuarios } from '../interfaces/cargar-usuarios.interface';
+import { SidebarService } from './sidebar.service';
 
 declare const google: any;
 
@@ -17,17 +18,22 @@ declare const google: any;
 })
 export class UsuariosService {
   private http = inject(HttpClient);
-  private baseUrl = environment.baseUrl;
-  private apiKey = 'reqres-free-v1';
   private router = inject(Router);
   private ngzone = inject(NgZone);
-
+  private sidebarService = inject(SidebarService);
+  
+  private apiKey = 'reqres-free-v1';
+  private baseUrl = environment.baseUrl;
   
 
   usuario!: Usuario;
 
   get token(): string {
     return sessionStorage.getItem('token') || '';
+  }
+
+  get role(): 'ADMIN_ROLE' | 'USER_ROLE' {
+    return this.usuario.role ?? 'USER_ROLE';
   }
 
   get headers() {
@@ -50,7 +56,7 @@ export class UsuariosService {
         map((resp: any) => {
           const { nombre, email, img = '', google, role, uid } = resp.usuario;
           this.usuario = new Usuario(nombre, email, '', img, google, role, uid);
-          sessionStorage.setItem('token', resp.token);
+          this.guardarLocalStorage(resp.token,resp.menu);
           return true;
         }),
         catchError((err) => of(false)),
@@ -72,7 +78,7 @@ export class UsuariosService {
   crearUsuario(usuario: RegisterForm) {
     return this.http.post(`${this.baseUrl}/usuarios`, usuario).pipe(
       tap((resp: any) => {
-        sessionStorage.setItem('token', resp.token);
+        this.guardarLocalStorage(resp.token,resp.menu);
       }),
     );
   }
@@ -84,7 +90,7 @@ export class UsuariosService {
   LoginUsuario(formData: LoginForm) {
     return this.http.post(`${this.baseUrl}/auth/login`, formData).pipe(
       tap((resp: any) => {
-        sessionStorage.setItem('token', resp.token);
+        this.guardarLocalStorage(resp.token,resp.menu);
       }),
     );
   }
@@ -92,7 +98,7 @@ export class UsuariosService {
   loginGoogle(token: string) {
     return this.http.post(`${this.baseUrl}/auth/google`, { token }).pipe(
       tap((resp: any) => {
-        sessionStorage.setItem('token', resp.token);
+        this.guardarLocalStorage(resp.token,resp.menu);
         sessionStorage.setItem('googleEmail', resp.email);
       }),
     );
@@ -105,7 +111,9 @@ export class UsuariosService {
         this.router.navigateByUrl('/auth/login');
       });
       sessionStorage.removeItem('token');
+      sessionStorage.removeItem('menu');
       sessionStorage.removeItem('googleEmail');
+      this.sidebarService.cargarMenu();
     });
   }
 
@@ -141,5 +149,11 @@ export class UsuariosService {
 
   guardarUsuario(usuario: Usuario) {
     return this.http.put(`${this.baseUrl}/usuarios/${usuario.uid}`, usuario, this.headers );
+  }
+
+  guardarLocalStorage(token: string, menu: any){
+    sessionStorage.setItem('token', token);
+    sessionStorage.setItem('menu',JSON.stringify(menu));
+    this.sidebarService.cargarMenu();
   }
 }

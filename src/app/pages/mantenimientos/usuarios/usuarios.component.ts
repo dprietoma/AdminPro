@@ -79,8 +79,6 @@ export class UsuariosComponent implements OnInit, OnDestroy {
       .busqueda('usuarios', termino)
       .subscribe((resultados: any) => {
         this.usuarios = resultados;
-
-        console.log('this.usuarios :', this.usuarios);
       });
   }
 
@@ -115,7 +113,6 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
   cambiarRole(usuario: Usuario) {
     this.usuariosService.guardarUsuario(usuario).subscribe((resp) => {
-      console.log('Role actualizado:', resp);
     });
   }
 

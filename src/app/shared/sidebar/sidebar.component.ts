@@ -10,13 +10,10 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class SidebarComponent {
   private usuariosService = inject(UsuariosService);
+  public sidebarService = inject(SidebarService);
 
   public usuario = this.usuariosService.usuario;
-  public menuItems: any[] = [];
-
-  constructor(private sidebarService: SidebarService) {
-    this.menuItems = this.sidebarService.menu;
-  }
+  
 
 
   logout() {
