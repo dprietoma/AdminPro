@@ -1,45 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { Graphics1Component } from './graphics-1/graphics-1.component';
-import { ProgressComponent } from './progress/progress.component';
-import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { MainComponent } from './main/main.component';
-import { PromesasComponent } from './promesas/promesas.component';
-import { RxjsComponent } from './rxjs/rxjs.component';
-import { authGuard } from '../guards/auth.guard';
-import { PerfilComponent } from './perfil/perfil.component';
-
-// Mantenimientos
-import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
-import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
-import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
-import { MedicoComponent } from './mantenimientos/medicos/medico/medico.component';
-import { BusquedaComponent } from './busqueda/busqueda.component';
-import { adminGuard } from '../guards/admin.guard';
+import { authGuard, authLoadGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'dashboard',
     component: MainComponent,
     canActivate: [authGuard],
-    children: [
-      { path: '', component: DashboardComponent, data: { title: 'Dashboard' } },
-      { path: 'graphics1', component: Graphics1Component, data: { title: 'Graphics 1' } },
-      { path: 'progress', component: ProgressComponent, data: { title: 'Progress' } },
-      { path: 'account', component: AccountSettingsComponent, data: { title: 'Account Settings' } },
-      { path: 'promises', component: PromesasComponent, data: { title: 'Promises' } },
-      { path: 'rxjs', component: RxjsComponent, data: { title: 'RxJS' } },
-      { path: 'perfil', component: PerfilComponent, data: { title: 'Perfil de usuario' } },
-      { path: 'busqueda/:termino', component: BusquedaComponent, data: { title: 'Busquedas' } },
-
-      // Mantenimientos
-      { path: 'usuarios',canActivate: [adminGuard],  component: UsuariosComponent, data: { title: 'Mantenimiento de usuarios' } },
-      { path: 'hospitales', component: HospitalesComponent, data: { title: 'Mantenimiento de hospitales' } },
-      { path: 'medicos', component: MedicosComponent, data: { title: 'Mantenimiento de médicos' } },
-      { path: 'medico/:id', component: MedicoComponent, data: { title: 'Mantenimiento de médico' } },
-    ]
+    canLoad: [authLoadGuard],
+    loadChildren: () => import('../pages/child-routes.module').then( m => m.ChildRoutesModule)
   },
 
 ]
